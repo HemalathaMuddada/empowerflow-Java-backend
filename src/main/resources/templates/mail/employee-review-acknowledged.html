@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${subject}">Performance Review Acknowledged</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .email-container { max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #ddd; }
+        .email-header { background-color: #28a745; color: #ffffff; padding: 20px; text-align: center; } /* Green for completion/acknowledgement */
+        .email-header h1 { margin: 0; color: #ffffff; }
+        .email-body { padding: 20px; }
+        .email-body p { margin-bottom: 15px; }
+        .email-body .greeting { font-size: 1.1em; font-weight: bold; }
+        .comments-section { margin-top: 10px; padding: 10px; border: 1px solid #eee; background-color: #f9f9f9; }
+        .email-footer { background-color: #f8f9fa; padding: 15px 20px; font-size: 0.9em; color: #777; text-align: center; border-top: 1px solid #ddd;}
+        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1 th:text="${subject}">Review Acknowledged</h1>
+        </div>
+        <div class="email-body">
+            <p class="greeting" th:text="${greeting}">Dear Manager,</p>
+
+            <p th:utext="${bodyMessage}">An employee has acknowledged their performance review.</p>
+
+            <div th:if="${employeeComments != null and !employeeComments.isEmpty()}" class="comments-section">
+                <strong>Employee's Final Comments:</strong>
+                <p th:utext="${employeeComments}">[Employee Comments]</p>
+            </div>
+            <div th:if="${employeeComments == null or employeeComments.isEmpty()}" class="comments-section">
+                <p><em>No additional comments were provided by the employee.</em></p>
+            </div>
+
+            <hr/>
+            <p>This performance review is now typically pending further action by HR. You can view the full details in the HRMS portal.</p>
+        </div>
+        <div class="email-footer">
+            <p>Regards,<br/>The HRMS Team</p>
+            <p><small>&copy; <span th:text="${#dates.year(#dates.createNow())}">2024</span> HRMS Corp. All rights reserved.</small></p>
+        </div>
+    </div>
+</body>
+</html>
