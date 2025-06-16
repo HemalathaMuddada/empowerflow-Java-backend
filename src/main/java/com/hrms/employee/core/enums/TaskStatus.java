@@ -5,5 +5,6 @@ public enum TaskStatus {
     IN_PROGRESS,
     COMPLETED,
     CLOSED_SUCCESS, // For tasks that have a specific success/failure outcome
-    CLOSED_FAILED
+    CLOSED_FAILED,
+    AUTO_CLOSED_DEADLINE_PASSED // New status for automated closure
 }

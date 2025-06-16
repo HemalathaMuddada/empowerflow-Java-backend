@@ -12,7 +12,12 @@ import java.util.Map;
 @AllArgsConstructor
 public class DashboardWidgetData {
     private int upcomingHolidaysCount = 0;
-    private Map<String, Double> availableLeaveBalance = Collections.emptyMap();
-    private int pendingTasksCount = 0;
-    private int pendingRegularizationRequestsCount = 0;
+    private Map<String, Double> leaveBalances = Collections.emptyMap(); // Renamed for clarity
+    private long pendingTasksCount = 0; // Changed to long
+    private long myPendingRegularizationsCount = 0; // Changed to long
+
+    // New fields for performance review and payslips
+    private String activePerformanceReviewStatus; // Nullable
+    private Long activePerformanceReviewId;     // Nullable
+    private List<PayslipSimpleDTO> recentPayslips = Collections.emptyList();
 }

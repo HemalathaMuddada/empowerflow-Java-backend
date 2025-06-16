@@ -58,4 +58,7 @@ public class Task {
     private LocalDateTime updatedAt;
 
     private LocalDateTime completedAt;
+
+    @Column(name = "auto_closed_at")
+    private LocalDateTime autoClosedAt;
 }

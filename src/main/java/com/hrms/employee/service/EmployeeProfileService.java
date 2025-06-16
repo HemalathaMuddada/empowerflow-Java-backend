@@ -38,7 +38,9 @@ public class EmployeeProfileService {
                 user.getEmail(),
                 user.getDateOfBirth(),
                 companyName,
-                roles
+                roles,
+                user.getDesignation(), // Added in previous step to User entity and EmployeeProfileResponse
+                user.isActive()        // New isActive field
         );
     }
 }

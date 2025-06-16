@@ -65,4 +65,7 @@ public class Hike {
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @Column(name = "published_at")
+    private LocalDateTime publishedAt; // Nullable
 }

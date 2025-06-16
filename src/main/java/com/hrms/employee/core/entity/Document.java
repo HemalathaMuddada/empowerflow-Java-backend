@@ -66,4 +66,7 @@ public class Document {
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @Column(name = "is_restricted_to_hr", nullable = false)
+    private boolean isRestrictedToHR = false;
 }

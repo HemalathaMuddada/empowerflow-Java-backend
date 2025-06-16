@@ -7,5 +7,7 @@ public enum DocumentType {
     AGREEMENT,          // Employment agreement
     POLICY,             // Company policies signed by employee
     HIKE_LETTER,        // Hike or promotion letters
+    HIKE_DOCUMENT,      // General hike or compensation related document uploaded by manager/HR
+    INVESTMENT_PROOF,   // Proofs for IT declarations
     OTHER               // Any other relevant documents
 }

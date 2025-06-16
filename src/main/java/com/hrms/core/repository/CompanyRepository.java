@@ -9,4 +9,7 @@ import java.util.Optional;
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long> {
     Optional<Company> findByName(String name);
+    List<Company> findByIsActive(boolean isActive); // Returns a list
+    long countByIsActiveTrue(); // New
+    long countByIsActiveFalse(); // New
 }

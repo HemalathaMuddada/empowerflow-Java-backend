@@ -19,6 +19,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+// Consider @ToString.Exclude for manager if using @Data and issues arise,
+// or if @ToString is explicitly used. @Data includes @ToString.
 public class User {
 
     @Id
@@ -64,4 +66,22 @@ public class User {
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    private User manager;
+
+    @Column(name = "designation", length = 255)
+    private String designation;
+
+    @Column(name = "offboarding_date")
+    private LocalDate offboardingDate;
+
+    @Lob
+    @Column(name = "reason_for_leaving")
+    private String reasonForLeaving;
+
+    @Lob
+    @Column(name = "offboarding_comments_hr")
+    private String offboardingCommentsByHR;
 }

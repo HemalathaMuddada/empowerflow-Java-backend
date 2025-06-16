@@ -53,4 +53,16 @@ public class Attendance {
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @Column(name = "underwork_alert_sent_at")
+    private LocalDateTime underworkAlertSentAt;
+
+    @Column(name = "missed_logout_alert_sent_at")
+    private LocalDateTime missedLogoutAlertSentAt;
+
+    @Column(name = "early_logout_alert_sent_at")
+    private LocalDateTime earlyLogoutAlertSentAt;
+
+    @Column(name = "late_login_alert_sent_at")
+    private LocalDateTime lateLoginAlertSentAt;
 }

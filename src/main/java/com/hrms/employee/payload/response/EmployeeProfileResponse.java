@@ -19,4 +19,13 @@ public class EmployeeProfileResponse {
     private LocalDate dateOfBirth;
     private String companyName;
     private List<String> roles;
+    private String designation;
+    private Boolean isActive;
+    private Long openTasksCount;
+    private Boolean isManagerWithActiveReportees;
+
+    // Offboarding specific fields
+    private LocalDate offboardingDate;
+    private String reasonForLeaving;
+    private String offboardingCommentsByHR;
 }

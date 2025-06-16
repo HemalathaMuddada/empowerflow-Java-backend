@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${subject}">Attendance Alert</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .email-container { max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #ddd; }
+        .email-header { background-color: #FFA500; color: #ffffff; padding: 20px; text-align: center; } /* Orange for this type of alert */
+        .email-header h1 { margin: 0; color: #ffffff; }
+        .email-body { padding: 20px; }
+        .email-body p { margin-bottom: 15px; }
+        .email-body .greeting { font-size: 1.1em; font-weight: bold; }
+        .email-footer { background-color: #f8f9fa; padding: 15px 20px; font-size: 0.9em; color: #777; text-align: center; border-top: 1px solid #ddd;}
+        .button { display: inline-block; padding: 10px 20px; margin: 15px 0; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1 th:text="${subject}">Attendance Alert</h1>
+        </div>
+        <div class="email-body">
+            <p class="greeting" th:text="${greeting}">Dear User,</p>
+
+            <p th:utext="${bodyMessage}">Our records indicate a potential issue with your attendance or leave records for an expected workday.</p>
+
+            <p th:if="${actionUrl != null and actionText != null}">
+                <a th:href="${actionUrl}" class="button" th:text="${actionText}">Review Your Records</a>
+            </p>
+
+            <hr/>
+            <p>Please log in to the HRMS portal to verify your records and take necessary action if required.</p>
+        </div>
+        <div class="email-footer">
+            <p>Regards,<br/>The HRMS Team</p>
+            <p><small>&copy; <span th:text="${#dates.year(#dates.createNow())}">2024</span> HRMS Corp. All rights reserved.</small></p>
+        </div>
+    </div>
+</body>
+</html>
