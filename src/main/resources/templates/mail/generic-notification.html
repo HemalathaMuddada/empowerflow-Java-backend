@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${subject}">Notification</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .email-container { max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #ddd; }
+        .email-header { background-color: #007bff; color: #ffffff; padding: 20px; text-align: center; }
+        .email-header h1 { margin: 0; color: #ffffff; }
+        .email-body { padding: 20px; }
+        .email-body p { margin-bottom: 15px; }
+        .email-body .greeting { font-size: 1.1em; font-weight: bold; }
+        .email-footer { background-color: #f8f9fa; padding: 15px 20px; font-size: 0.9em; color: #777; text-align: center; border-top: 1px solid #ddd;}
+        .button { display: inline-block; padding: 10px 20px; margin: 15px 0; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1 th:text="${subject}">Notification Subject</h1>
+        </div>
+        <div class="email-body">
+            <p class="greeting" th:text="${greeting}">Hello [User],</p>
+
+            <!-- The main message content -->
+            <p th:utext="${bodyMessage}">This is the main body of your notification.</p>
+
+            <!-- Example of a button, if a link is provided -->
+            <p th:if="${actionUrl != null and actionText != null}">
+                <a th:href="${actionUrl}" class="button" th:text="${actionText}">Perform Action</a>
+            </p>
+
+            <hr/>
+            <p>If you have any questions, please contact your HR department or manager.</p>
+        </div>
+        <div class="email-footer">
+            <p>Regards,<br/>The HRMS Team</p>
+            <p><small>&copy; <span th:text="${#dates.year(#dates.createNow())}">2024</span> HRMS Corp. All rights reserved.</small></p>
+        </div>
+    </div>
+</body>
+</html>

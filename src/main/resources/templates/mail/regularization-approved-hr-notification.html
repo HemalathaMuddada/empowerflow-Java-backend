@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${subject}">Regularization Request Update</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .email-container { max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #ddd; }
+        .email-header { background-color: #17a2b8; color: #ffffff; padding: 20px; text-align: center; } /* Info color */
+        .email-header h1 { margin: 0; color: #ffffff; }
+        .email-body { padding: 20px; }
+        .email-body p { margin-bottom: 15px; }
+        .email-body .greeting { font-size: 1.1em; font-weight: bold; }
+        .email-footer { background-color: #f8f9fa; padding: 15px 20px; font-size: 0.9em; color: #777; text-align: center; border-top: 1px solid #ddd;}
+        .button { display: inline-block; padding: 10px 20px; margin: 15px 0; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+        .details-table { width: 100%; margin-bottom: 15px; border-collapse: collapse; }
+        .details-table th, .details-table td { border: 1px solid #eee; padding: 8px; text-align: left; }
+        .details-table th { background-color: #f8f9fa; }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1 th:text="${subject}">Regularization Update</h1>
+        </div>
+        <div class="email-body">
+            <p class="greeting" th:text="${greeting}">Dear HR Team,</p>
+
+            <p th:utext="${bodyMessage}">An attendance regularization request has been approved and may require your attention for record-keeping or payroll adjustments.</p>
+
+            <!-- More detailed information can be structured here if passed in context -->
+            <!-- For example, if individual variables were set in context:
+            <table class="details-table">
+                <tr><th>Employee Name</th><td th:text="${employeeName}">[Employee Name]</td></tr>
+                <tr><th>Employee ID</th><td th:text="${employeeId}">[Emp ID]</td></tr>
+                <tr><th>Request Date</th><td th:text="${requestDate}">[Date]</td></tr>
+                <tr><th>Reason</th><td th:text="${reasonText}">[Reason]</td></tr>
+                <tr><th>Approved By</th><td th:text="${approverName}">[Approver Name]</td></tr>
+                <tr><th>Approver Comment</th><td th:text="${approverComment}">[Comment]</td></tr>
+            </table>
+            -->
+
+            <p th:if="${actionUrl != null and actionText != null}">
+                <a th:href="${actionUrl}" class="button" th:text="${actionText}">View Request Details (if applicable)</a>
+            </p>
+
+            <hr/>
+            <p>Please review this approval in the HRMS portal and take any necessary follow-up actions.</p>
+        </div>
+        <div class="email-footer">
+            <p>Regards,<br/>The HRMS Team</p>
+            <p><small>&copy; <span th:text="${#dates.year(#dates.createNow())}">2024</span> HRMS Corp. All rights reserved.</small></p>
+        </div>
+    </div>
+</body>
+</html>
