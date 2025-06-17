@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import io.swagger.v3.oas.annotations.media.Schema; // Added
 
+
 import java.util.List;
 
 @Data
@@ -34,6 +35,7 @@ public class JwtResponse {
     private Long companyId;
 
     // Constructor used by AuthController, ensure fields match
+
     public JwtResponse(String token, Long id, String username, String email, List<String> roles, Long companyId) {
         this.token = token;
         this.id = id;

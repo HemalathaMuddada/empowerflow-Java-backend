@@ -163,6 +163,7 @@ public class HRPerformanceService {
 
         Specification<PerformanceReview> spec = PerformanceReviewSpecification.filterReviewsForHR(effectiveCompanyId, statusFilter);
         Page<PerformanceReview> reviewPage = performanceReviewRepository.findAllWithDetails(spec, pageable); // Changed to use new method
+
         List<PerformanceReviewDetailsDTO> dtoList = reviewPage.getContent().stream()
             .map(this::mapToPerformanceReviewDetailsDTO).collect(Collectors.toList());
         return new PageImpl<>(dtoList, pageable, reviewPage.getTotalElements());

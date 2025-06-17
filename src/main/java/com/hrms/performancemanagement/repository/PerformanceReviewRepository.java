@@ -26,4 +26,5 @@ public interface PerformanceReviewRepository extends JpaRepository<PerformanceRe
 
     @org.springframework.data.jpa.repository.EntityGraph(attributePaths = {"employee", "employee.company", "reviewer", "reviewCycle", "reviewedBy"})
     org.springframework.data.domain.Page<PerformanceReview> findAllWithDetails(org.springframework.data.jpa.domain.Specification<PerformanceReview> spec, org.springframework.data.domain.Pageable pageable);
+
 }

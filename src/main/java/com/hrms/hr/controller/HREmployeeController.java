@@ -29,7 +29,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse; // Added
 import io.swagger.v3.oas.annotations.responses.ApiResponses; // Added
 import io.swagger.v3.oas.annotations.tags.Tag; // Added
 import com.hrms.employee.payload.response.EmployeeProfileResponse; // For schema link
-
 import java.util.List;
 
 @RestController
@@ -55,6 +54,7 @@ public class HREmployeeController {
         @ApiResponse(responseCode = "403", description = "Forbidden (User does not have ROLE_HR/ROLE_MANAGER)", content = @Content),
         @ApiResponse(responseCode = "409", description = "Conflict (e.g., username or email already exists)", content = @Content)
     })
+
     public ResponseEntity<EmployeeProfileResponse> addNewEmployee(
             @Valid @RequestBody HRAddEmployeeRequest addEmployeeRequest,
             @AuthenticationPrincipal UserDetailsImpl hrUser) {

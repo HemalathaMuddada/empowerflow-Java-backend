@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import io.swagger.v3.oas.annotations.media.Schema; // Added
-
 import java.time.LocalDateTime;
 
 @Data
@@ -63,4 +62,5 @@ public class PerformanceReviewDetailsDTO {
 
     @Schema(description = "Final overall rating after HR review/calibration (e.g., 1-5).", example = "4", nullable = true)
     private Integer finalRating;
+
 }
