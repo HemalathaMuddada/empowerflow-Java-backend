@@ -44,10 +44,8 @@ public class SuperAdminUserService {
     @Transactional(readOnly = true)
     public Page<EmployeeProfileResponse> getAllUsersGlobal(
             Long filterByCompanyId, String filterByRoleName, Boolean filterByIsActive, Pageable pageable) {
-
-        Specification<User> spec = UserSpecification.filterUsers(filterByCompanyId, filterByRoleName, filterByIsActive);
-        Page<User> userPage = userRepository.findAll(spec, pageable);
-
+        Specification<User> spec = UserSpecification.filterUsers(filterByCompanyId, filterByRoleName, filterByIsActive, null); // Assuming designationFilter is null for this specific existing method
+        Page<User> userPage = userRepository.findAllWithCompanyAndRoles(spec, pageable); // Changed to use new method
         List<EmployeeProfileResponse> dtoList = userPage.getContent().stream()
                 .map(this::mapToEmployeeProfileResponse)
                 .collect(Collectors.toList());

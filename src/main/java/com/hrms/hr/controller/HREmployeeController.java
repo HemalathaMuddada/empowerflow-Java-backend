@@ -22,12 +22,19 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
+import io.swagger.v3.oas.annotations.Operation; // Added
+import io.swagger.v3.oas.annotations.media.Content; // Added
+import io.swagger.v3.oas.annotations.media.Schema; // Added
+import io.swagger.v3.oas.annotations.responses.ApiResponse; // Added
+import io.swagger.v3.oas.annotations.responses.ApiResponses; // Added
+import io.swagger.v3.oas.annotations.tags.Tag; // Added
+import com.hrms.employee.payload.response.EmployeeProfileResponse; // For schema link
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/hr/employees")
 @PreAuthorize("hasAnyRole('ROLE_HR', 'ROLE_MANAGER')")
+@Tag(name = "HR - Employee Management", description = "Endpoints for HR personnel to manage employee records.")
 public class HREmployeeController {
 
     @Autowired
@@ -38,6 +45,16 @@ public class HREmployeeController {
     private UserRepository userRepository;
 
     @PostMapping("/add")
+    @Operation(summary = "Add New Employee", description = "Allows HR to create a new employee profile.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = "Employee created successfully",
+                     content = @Content(schema = @Schema(implementation = EmployeeProfileResponse.class))),
+        @ApiResponse(responseCode = "400", description = "Invalid employee data provided", content = @Content),
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+        @ApiResponse(responseCode = "403", description = "Forbidden (User does not have ROLE_HR/ROLE_MANAGER)", content = @Content),
+        @ApiResponse(responseCode = "409", description = "Conflict (e.g., username or email already exists)", content = @Content)
+    })
+
     public ResponseEntity<EmployeeProfileResponse> addNewEmployee(
             @Valid @RequestBody HRAddEmployeeRequest addEmployeeRequest,
             @AuthenticationPrincipal UserDetailsImpl hrUser) {
@@ -95,10 +112,19 @@ public class HREmployeeController {
         }
     }
 
-    @PatchMapping("/{employeeId}/initiate-offboarding") // Renamed path from /deactivate
-    public ResponseEntity<EmployeeProfileResponse> initiateEmployeeOffboarding( // Renamed method
+    @PatchMapping("/{employeeId}/initiate-offboarding")
+    @Operation(summary = "Initiate Employee Offboarding", description = "Allows HR to initiate the offboarding process for an employee (deactivates account and records offboarding details).")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Employee offboarding initiated successfully",
+                     content = @Content(schema = @Schema(implementation = EmployeeProfileResponse.class))),
+        @ApiResponse(responseCode = "400", description = "Invalid request or employee state", content = @Content),
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content),
+        @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+        @ApiResponse(responseCode = "404", description = "Employee not found", content = @Content)
+    })
+    public ResponseEntity<EmployeeProfileResponse> initiateEmployeeOffboarding(
             @PathVariable Long employeeId,
-            @Valid @RequestBody InitiateOffboardingRequest offboardingRequest, // New DTO
+            @Valid @RequestBody InitiateOffboardingRequest offboardingRequest,
             @AuthenticationPrincipal UserDetailsImpl hrUser) {
         try {
             EmployeeProfileResponse updatedEmployee = hrEmployeeService.initiateOffboarding(employeeId, offboardingRequest, hrUser);

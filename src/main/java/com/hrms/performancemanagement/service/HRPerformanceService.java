@@ -159,10 +159,11 @@ public class HRPerformanceService {
             if (filterCompanyId == null) effectiveCompanyId = hrUser.getCompany().getId();
             else if (!Objects.equals(hrUser.getCompany().getId(), filterCompanyId))
                 throw new AccessDeniedException("HR users can only view declarations for their own company.");
-        } // Global HR can see for specified companyId, or all if filterCompanyId is null
+        } // Global HR can see for specified companyId, or all if filterCompanyId is null (Spec handles null companyId for global view)
 
         Specification<PerformanceReview> spec = PerformanceReviewSpecification.filterReviewsForHR(effectiveCompanyId, statusFilter);
-        Page<PerformanceReview> reviewPage = performanceReviewRepository.findAll(spec, pageable);
+        Page<PerformanceReview> reviewPage = performanceReviewRepository.findAllWithDetails(spec, pageable); // Changed to use new method
+
         List<PerformanceReviewDetailsDTO> dtoList = reviewPage.getContent().stream()
             .map(this::mapToPerformanceReviewDetailsDTO).collect(Collectors.toList());
         return new PageImpl<>(dtoList, pageable, reviewPage.getTotalElements());

@@ -23,4 +23,8 @@ public interface PerformanceReviewRepository extends JpaRepository<PerformanceRe
     long countByStatus(String status);
     long countByReviewerAndStatusIn(User reviewer, List<String> statuses);
     long countByStatusIn(List<String> statuses); // Added for System Stats
+
+    @org.springframework.data.jpa.repository.EntityGraph(attributePaths = {"employee", "employee.company", "reviewer", "reviewCycle", "reviewedBy"})
+    org.springframework.data.domain.Page<PerformanceReview> findAllWithDetails(org.springframework.data.jpa.domain.Specification<PerformanceReview> spec, org.springframework.data.domain.Pageable pageable);
+
 }

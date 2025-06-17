@@ -4,8 +4,8 @@ import com.hrms.payload.request.LoginRequest;
 import com.hrms.payload.response.JwtResponse;
 import com.hrms.security.jwt.JwtUtil;
 import com.hrms.security.service.UserDetailsImpl;
-import com.hrms.audit.service.AuditLogService; // Added AuditLogService
-import jakarta.servlet.http.HttpServletRequest; // Added HttpServletRequest
+import com.hrms.audit.service.AuditLogService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +15,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@CrossOrigin(origins = "*", maxAge = 3600) // Configure origins as needed
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
+@Tag(name = "Authentication Service", description = "Endpoints for user authentication and JWT token management.")
 public class AuthController {
 
     @Autowired
@@ -31,7 +37,7 @@ public class AuthController {
     JwtUtil jwtUtil;
 
     @Autowired
-    AuditLogService auditLogService; // Injected AuditLogService
+    AuditLogService auditLogService;
 
     private String getClientIpAddress(HttpServletRequest request) {
         String xfHeader = request.getHeader("X-Forwarded-For");
@@ -42,16 +48,22 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, HttpServletRequest request) { // Added HttpServletRequest
-
+    @Operation(summary = "User Login", description = "Authenticates a user and returns a JWT if successful.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Authentication successful, JWT returned",
+                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = JwtResponse.class))),
+        @ApiResponse(responseCode = "400", description = "Invalid request payload (e.g., missing username/password)",
+                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class))),
+        @ApiResponse(responseCode = "401", description = "Authentication failed (invalid credentials or account status issues)",
+                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class)))
+    })
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, HttpServletRequest request) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        String jwt = jwtUtil.generateToken(userDetails); // Token generation might vary
-
-        // Audit Log Call
+        String jwt = jwtUtil.generateToken(userDetails);
         try {
             String ipAddress = getClientIpAddress(request);
             auditLogService.logEvent(
@@ -65,11 +77,9 @@ public class AuthController {
                 "SUCCESS"
             );
         } catch (Exception e) {
-            // Log audit logging failure but do not fail the login
-            // Logger should be added to this controller for this kind of internal logging
+            // Consider using SLF4J logger here if available in controller
             System.err.println("Failed to log login event: " + e.getMessage());
         }
-
 
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)

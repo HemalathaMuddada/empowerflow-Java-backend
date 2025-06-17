@@ -267,7 +267,7 @@ public class ManagerEmployeeDataService {
         org.springframework.data.jpa.domain.Specification<User> spec =
             userSpec.filterUsers(companyId, null, isActiveFilter, designationFilter);
 
-        org.springframework.data.domain.Page<User> userPage = userRepository.findAll(spec, pageable);
+        org.springframework.data.domain.Page<User> userPage = userRepository.findAllWithCompanyAndRoles(spec, pageable); // Changed to use new method
 
         List<EmployeeProfileResponse> responseDTOs = userPage.getContent().stream()
                 .map(this::mapToEmployeeProfileResponse) // Assumes this mapper is in the class
