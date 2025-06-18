@@ -14,10 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
 import com.hrms.exception.BadRequestException; // Added common
 import com.hrms.exception.ResourceNotFoundException; // Added common
-// No longer need local ResourceNotFoundException
+
 
 @Service
 public class ManagerEmployeeDataService {
@@ -146,7 +145,7 @@ public class ManagerEmployeeDataService {
             Long employeeId, LocalDate startDate, LocalDate endDate, UserDetailsImpl managerUserDetails) {
 
         if (startDate.isAfter(endDate)) {
-            throw new BadRequestException("Start date cannot be after end date."); // Changed to common
+          throw new BadRequestException("Start date cannot be after end date."); // Changed to common
         }
 
         User manager = userRepository.findById(managerUserDetails.getId())
