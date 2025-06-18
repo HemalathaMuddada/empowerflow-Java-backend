@@ -13,8 +13,8 @@ import com.hrms.employee.payload.response.PerformanceReviewDetailsDTO; // Reusin
 import com.hrms.hr.payload.request.InitiateReviewsRequest;
 import com.hrms.hr.payload.request.HRFinalizeReviewRequest; // New DTO
 import com.hrms.hr.payload.response.InitiationSummaryDTO;
-import com.hrms.hr.service.ResourceNotFoundException;
-import com.hrms.hr.service.BadRequestException;
+import com.hrms.exception.ResourceNotFoundException; // Changed to common
+import com.hrms.exception.BadRequestException; // Changed to common
 import com.hrms.security.service.UserDetailsImpl;
 import com.hrms.service.notification.EmailService; // For notifications
 import org.slf4j.Logger;

@@ -8,8 +8,8 @@ import com.hrms.performancemanagement.entity.ReviewCycle;
 import com.hrms.performancemanagement.repository.PerformanceReviewRepository;
 import com.hrms.employee.payload.request.SelfAppraisalRequest;
 import com.hrms.employee.payload.response.PerformanceReviewDetailsDTO;
-import com.hrms.hr.service.ResourceNotFoundException; // Assuming accessible
-// import com.hrms.hr.service.BadRequestException; // Or use IllegalStateException
+import com.hrms.exception.ResourceNotFoundException; // Changed to common
+// import com.hrms.exception.BadRequestException; // Or use IllegalStateException
 import com.hrms.security.service.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -9,8 +9,8 @@ import com.hrms.employee.core.repository.DocumentRepository;
 import com.hrms.employee.core.repository.InvestmentDeclarationRepository;
 import com.hrms.employee.payload.request.InvestmentDeclarationRequest;
 import com.hrms.employee.payload.response.InvestmentDeclarationDTO;
-import com.hrms.hr.service.BadRequestException; // Assuming accessible
-import com.hrms.hr.service.ResourceNotFoundException; // Assuming accessible
+import com.hrms.exception.BadRequestException; // Changed to common
+import com.hrms.exception.ResourceNotFoundException; // Changed to common
 import com.hrms.security.service.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

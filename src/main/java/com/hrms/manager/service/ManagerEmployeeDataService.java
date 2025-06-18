@@ -15,12 +15,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-// Local exception for this service
-class ResourceNotFoundException extends RuntimeException {
-    public ResourceNotFoundException(String message) {
-        super(message);
-    }
-}
+import com.hrms.exception.BadRequestException; // Added common
+import com.hrms.exception.ResourceNotFoundException; // Added common
+// No longer need local ResourceNotFoundException
 
 @Service
 public class ManagerEmployeeDataService {
@@ -149,7 +146,7 @@ public class ManagerEmployeeDataService {
             Long employeeId, LocalDate startDate, LocalDate endDate, UserDetailsImpl managerUserDetails) {
 
         if (startDate.isAfter(endDate)) {
-            throw new com.hrms.hr.service.BadRequestException("Start date cannot be after end date."); // Assuming BadRequestException from hr.service
+            throw new BadRequestException("Start date cannot be after end date."); // Changed to common
         }
 
         User manager = userRepository.findById(managerUserDetails.getId())
