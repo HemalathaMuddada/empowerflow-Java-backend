@@ -1,9 +1,9 @@
 package com.hrms.superadmin.controller;
 
 import com.hrms.employee.payload.response.HolidayDetailsDTO; // Reusing
+import com.hrms.exception.ResourceNotFoundException;
 import com.hrms.hr.payload.request.HolidayManagementRequest;   // Reusing
 import com.hrms.security.service.UserDetailsImpl;
-import com.hrms.superadmin.service.ResourceNotFoundException; // Assuming defined in SuperAdminHolidayService
 import com.hrms.superadmin.service.SuperAdminHolidayService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package com.hrms.lead.controller;
 
+import com.hrms.exception.ResourceNotFoundException;
 import com.hrms.lead.payload.response.LeadDashboardResponseDTO;
 import com.hrms.lead.service.LeadDashboardService;
-import com.hrms.hr.service.ResourceNotFoundException; // Assuming accessible
 import com.hrms.security.service.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

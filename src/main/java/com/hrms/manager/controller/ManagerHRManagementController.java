@@ -1,11 +1,10 @@
 package com.hrms.manager.controller;
 
 import com.hrms.employee.payload.response.EmployeeProfileResponse; // Reusing
+import com.hrms.exception.ResourceNotFoundException;
 import com.hrms.manager.payload.request.ManagerActionHRUserRequest;
 import com.hrms.manager.payload.request.UserStatusUpdateRequest;
-import com.hrms.manager.service.ManagerUserService;
-import com.hrms.manager.service.BadRequestException; // Assuming defined in ManagerUserService.java
-import com.hrms.manager.service.ResourceNotFoundException; // Assuming defined in ManagerUserService.java
+import com.hrms.manager.service.ManagerUserService; // Assuming defined in ManagerUserService.java
 import com.hrms.security.service.UserDetailsImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import com.hrms.exception.BadRequestException;
 
 @RestController
 @RequestMapping("/api/manager/hr-users")

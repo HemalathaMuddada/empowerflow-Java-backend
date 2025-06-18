@@ -1,9 +1,11 @@
 package com.hrms.scheduler;
 
 import com.hrms.core.entity.User;
+import com.hrms.core.repository.UserRepository;
 import com.hrms.employee.core.entity.Attendance;
 import com.hrms.employee.core.repository.AttendanceRepository;
 import com.hrms.employee.core.repository.HolidayRepository;
+import com.hrms.employee.core.repository.LeaveRequestRepository;
 import com.hrms.service.config.SystemConfigValueProviderService; // Added
 import com.hrms.service.notification.EmailService;
 import org.slf4j.Logger;
@@ -17,6 +19,7 @@ import org.springframework.util.StringUtils;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -35,6 +38,12 @@ public class AttendanceAlertService {
 
     @Autowired // Added
     private SystemConfigValueProviderService configValueProvider;
+    
+    @Autowired
+    private LeaveRequestRepository leaveRequestRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
 
     // private static final double MINIMUM_HOURS_THRESHOLD = 8.0; // Replaced by config
 

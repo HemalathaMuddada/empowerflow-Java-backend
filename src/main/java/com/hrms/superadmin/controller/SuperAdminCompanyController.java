@@ -1,9 +1,9 @@
 package com.hrms.superadmin.controller;
 
+import com.hrms.exception.ResourceNotFoundException;
 import com.hrms.superadmin.payload.request.CompanyCreateRequest;
 import com.hrms.superadmin.payload.request.CompanyUpdateRequest;
 import com.hrms.superadmin.payload.response.CompanyResponseDTO;
-import com.hrms.superadmin.service.ResourceNotFoundException; // Assuming defined in SuperAdminCompanyService
 import com.hrms.superadmin.service.SuperAdminCompanyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

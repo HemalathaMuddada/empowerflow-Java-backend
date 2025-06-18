@@ -3,8 +3,8 @@ package com.hrms.employee.controller;
 import com.hrms.employee.payload.request.InvestmentDeclarationRequest;
 import com.hrms.employee.payload.response.InvestmentDeclarationDTO;
 import com.hrms.employee.service.EmployeeInvestmentService;
-import com.hrms.hr.service.BadRequestException; // Assuming accessible
-import com.hrms.hr.service.ResourceNotFoundException; // Assuming accessible
+import com.hrms.exception.BadRequestException;
+import com.hrms.exception.ResourceNotFoundException;
 import com.hrms.security.service.UserDetailsImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/employee/investments/declarations")

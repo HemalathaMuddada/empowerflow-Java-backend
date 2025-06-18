@@ -10,7 +10,6 @@ import com.hrms.employee.core.repository.RegularizationRequestRepository;
 import com.hrms.employee.core.repository.TaskRepository;
 import com.hrms.employee.payload.response.DashboardWidgetData;
 import com.hrms.employee.service.EmployeeDashboardService;
-import com.hrms.hr.service.ResourceNotFoundException; // Assuming accessible
 import com.hrms.lead.payload.response.LeadDashboardResponseDTO;
 import com.hrms.lead.payload.response.LeadSpecificWidgetData;
 import com.hrms.security.service.UserDetailsImpl;

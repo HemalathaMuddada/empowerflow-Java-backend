@@ -5,6 +5,7 @@ import com.hrms.core.entity.Role;
 import com.hrms.core.entity.User;
 import com.hrms.core.repository.UserRepository;
 import com.hrms.employee.payload.response.EmployeeProfileResponse; // Reusing
+import com.hrms.security.service.UserDetailsImpl;
 import com.hrms.superadmin.specs.UserSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,9 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hrms.core.entity.Role; // Needed for Role entity
 import com.hrms.core.repository.RoleRepository; // Needed for RoleRepository
-import com.hrms.audit.service.AuditLogService; // Added
-import com.hrms.hr.service.BadRequestException; // Assuming accessible from hr.service
-import com.hrms.hr.service.ResourceNotFoundException; // Assuming accessible from hr.service
+import com.hrms.audit.service.AuditLogService; 
 
 import java.util.List;
 import java.util.Set; // Added for Set

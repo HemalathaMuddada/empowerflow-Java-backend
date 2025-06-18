@@ -6,6 +6,7 @@ import com.hrms.core.repository.UserRepository;
 import com.hrms.performancemanagement.entity.PerformanceReview;
 import com.hrms.performancemanagement.entity.ReviewCycle;
 import com.hrms.performancemanagement.repository.PerformanceReviewRepository;
+import com.hrms.employee.payload.request.EmployeeFinalCommentsRequest;
 import com.hrms.employee.payload.request.SelfAppraisalRequest;
 import com.hrms.employee.payload.response.PerformanceReviewDetailsDTO;
 import com.hrms.exception.ResourceNotFoundException; // Changed to common

@@ -1,8 +1,8 @@
 package com.hrms.manager.controller;
 
 import com.hrms.employee.payload.response.DocumentListItemDTO; // Reusing
-import com.hrms.hr.service.BadRequestException; // Assuming accessible
-import com.hrms.hr.service.ResourceNotFoundException; // Assuming accessible
+import com.hrms.exception.BadRequestException;
+import com.hrms.exception.ResourceNotFoundException;
 import com.hrms.manager.payload.request.ManagerHikeDocumentUploadRequest;
 import com.hrms.manager.service.ManagerDocumentService;
 import com.hrms.security.service.UserDetailsImpl;

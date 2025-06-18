@@ -3,6 +3,7 @@ package com.hrms.superadmin.service;
 import com.hrms.audit.service.AuditLogService;
 import com.hrms.core.entity.User;
 import com.hrms.core.repository.UserRepository;
+import com.hrms.exception.BadRequestException;
 import com.hrms.performancemanagement.entity.ReviewCycle;
 import com.hrms.performancemanagement.repository.PerformanceReviewRepository; // For delete check
 import com.hrms.performancemanagement.repository.ReviewCycleRepository;
@@ -23,14 +24,6 @@ import java.time.LocalDateTime; // For audit log
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-// Local exceptions for this service
-class ResourceNotFoundException extends RuntimeException {
-    public ResourceNotFoundException(String message) { super(message); }
-}
-class BadRequestException extends RuntimeException {
-    public BadRequestException(String message) { super(message); }
-}
 
 @Service
 public class SuperAdminReviewCycleService {

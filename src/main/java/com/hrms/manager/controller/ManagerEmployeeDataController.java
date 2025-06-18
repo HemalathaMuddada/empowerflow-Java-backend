@@ -1,8 +1,9 @@
 package com.hrms.manager.controller;
 
 import com.hrms.employee.payload.response.EmployeeProfileResponse; // Reusing
+import com.hrms.exception.ResourceNotFoundException;
 import com.hrms.manager.service.ManagerEmployeeDataService;
-import com.hrms.manager.service.ResourceNotFoundException; // Assuming defined in ManagerEmployeeDataService
+// Assuming defined in ManagerEmployeeDataService
 import com.hrms.security.service.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import com.hrms.exception.BadRequestException;
 
 @RestController
 @RequestMapping("/api/manager/employee-data")
@@ -75,7 +77,7 @@ public class ManagerEmployeeDataController {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, ex.getMessage(), ex);
         } catch (IllegalStateException ex) {
             throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, ex.getMessage(), ex);
-        } catch (com.hrms.hr.service.BadRequestException ex) { // Assuming BadRequestException from hr.service
+        } catch (BadRequestException ex) { // Assuming BadRequestException from hr.service
              throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage(), ex);
         } catch (Exception ex) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred while fetching attendance records.", ex);

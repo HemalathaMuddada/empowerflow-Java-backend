@@ -1,10 +1,10 @@
 package com.hrms.performancemanagement.controller;
 
+import com.hrms.employee.payload.request.EmployeeFinalCommentsRequest;
 import com.hrms.employee.payload.request.SelfAppraisalRequest;
 import com.hrms.employee.payload.response.PerformanceReviewDetailsDTO;
+import com.hrms.exception.ResourceNotFoundException;
 import com.hrms.performancemanagement.service.EmployeePerformanceService;
-import com.hrms.hr.service.ResourceNotFoundException; // Assuming accessible
-// import com.hrms.hr.service.BadRequestException; // Or use IllegalStateException
 import com.hrms.security.service.UserDetailsImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

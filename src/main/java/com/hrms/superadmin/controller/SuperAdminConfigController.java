@@ -1,13 +1,13 @@
 package com.hrms.superadmin.controller;
 
+import com.hrms.exception.BadRequestException;
+import com.hrms.exception.ResourceNotFoundException;
 import com.hrms.security.service.UserDetailsImpl;
 import com.hrms.superadmin.payload.request.SystemConfigurationCreateRequest;
 import com.hrms.superadmin.payload.request.SystemConfigurationUpdateRequest;
 import com.hrms.superadmin.payload.response.SystemConfigurationDTO;
 import com.hrms.superadmin.service.SuperAdminConfigService;
-// Assuming these exceptions are defined in the service package or a common one
-import com.hrms.superadmin.service.ResourceNotFoundException;
-import com.hrms.superadmin.service.BadRequestException;
+
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

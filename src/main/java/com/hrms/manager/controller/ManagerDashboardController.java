@@ -1,8 +1,8 @@
 package com.hrms.manager.controller;
 
+import com.hrms.exception.ResourceNotFoundException;
 import com.hrms.manager.payload.response.ManagerDashboardResponseDTO;
 import com.hrms.manager.service.ManagerDashboardService;
-import com.hrms.hr.service.ResourceNotFoundException; // Assuming accessible
 import com.hrms.security.service.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

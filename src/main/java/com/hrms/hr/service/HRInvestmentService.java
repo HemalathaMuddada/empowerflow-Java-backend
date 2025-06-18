@@ -62,25 +62,18 @@ public class HRInvestmentService {
             .orElseThrow(() -> new UsernameNotFoundException("HR User not found: " + hrUserDetails.getUsername()));
 
         Long effectiveCompanyId = filterCompanyId;
-
-        // If HR is not global (i.e., tied to a company) and no filterCompanyId is given,
-        // default to HR's company. If filterCompanyId is given, HR must match that company.
         if (hrUser.getCompany() != null) {
             if (filterCompanyId == null) {
                 effectiveCompanyId = hrUser.getCompany().getId();
             } else if (!Objects.equals(hrUser.getCompany().getId(), filterCompanyId)) {
                 throw new AccessDeniedException("HR users can only view declarations for their own company or a specified valid company ID if global.");
             }
-        } else { // Global HR, filterCompanyId must be provided or it means list for all companies (if effectiveCompanyId remains null)
+        } else { 
             if (filterCompanyId == null) {
-                 // Potentially list all if allowed, or throw error if company context is always required
-                 // For now, if global HR doesn't specify company, they see all (spec handles null companyId to not filter by it)
-                 // However, our spec currently requires companyId. So global HR MUST provide a companyId.
                  throw new BadRequestException("Global HR must specify a companyId to filter declarations.");
             }
         }
 
-        // Validate effectiveCompanyId exists if it's set
         if (effectiveCompanyId != null) {
             companyRepository.findById(effectiveCompanyId).orElseThrow(() -> new ResourceNotFoundException("Company not found with ID: " + effectiveCompanyId));
         }
