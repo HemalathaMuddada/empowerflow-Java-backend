@@ -54,7 +54,6 @@ public class HREmployeeController {
         @ApiResponse(responseCode = "403", description = "Forbidden (User does not have ROLE_HR/ROLE_MANAGER)", content = @Content),
         @ApiResponse(responseCode = "409", description = "Conflict (e.g., username or email already exists)", content = @Content)
     })
-
     public ResponseEntity<EmployeeProfileResponse> addNewEmployee(
             @Valid @RequestBody HRAddEmployeeRequest addEmployeeRequest,
             @AuthenticationPrincipal UserDetailsImpl hrUser) {

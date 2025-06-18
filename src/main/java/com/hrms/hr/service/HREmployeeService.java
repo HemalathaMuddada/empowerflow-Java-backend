@@ -31,15 +31,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import com.hrms.exception.BadRequestException; // Added common exception
+import com.hrms.exception.ResourceNotFoundException; // Added common exception
 
-// Define custom exceptions or use a common exception package
-// class ResourceNotFoundException extends RuntimeException {
-//    public ResourceNotFoundException(String message) { super(message); }
-// }
-//
-// class BadRequestException extends RuntimeException {
-//    public BadRequestException(String message) { super(message); }
-// }
 
 @Service
 public class HREmployeeService {

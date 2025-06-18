@@ -13,12 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// Local exception for this service
-class ResourceNotFoundException extends RuntimeException {
-    public ResourceNotFoundException(String message) {
-        super(message);
-    }
-}
+import com.hrms.exception.ResourceNotFoundException; // Added common exception
+
 
 @Service
 public class SuperAdminCompanyService {

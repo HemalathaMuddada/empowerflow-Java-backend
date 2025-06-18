@@ -3,7 +3,6 @@ package com.hrms.superadmin.payload.request;
 import jakarta.validation.constraints.NotBlank;
 import io.swagger.v3.oas.annotations.media.Schema; // Added
 import jakarta.validation.constraints.NotBlank;
-
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -28,9 +27,6 @@ public class SystemConfigurationCreateRequest {
 
     @Size(max = 1000, message = "Description is too long (max 1000 characters).")
     @Schema(description = "Description of the configuration parameter.", example = "Enables experimental feature X.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    private String configValue;
-
-    @Size(max = 1000, message = "Description is too long (max 1000 characters).")
     private String description; // Optional
 
     @NotBlank(message = "Value type cannot be blank.")

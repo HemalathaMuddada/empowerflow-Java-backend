@@ -35,5 +35,4 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
     long countByIsActiveFalse(); // Added
     @org.springframework.data.jpa.repository.EntityGraph(attributePaths = {"company", "roles"})
     org.springframework.data.domain.Page<User> findAllWithCompanyAndRoles(org.springframework.data.jpa.domain.Specification<User> spec, org.springframework.data.domain.Pageable pageable);
-
 }

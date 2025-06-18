@@ -19,20 +19,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.hrms.exception.BadRequestException; // Added common exception
+import com.hrms.exception.ResourceNotFoundException; // Added common exception
 
-// Define local exceptions for this service
-// In a real app, these might be in a common exceptions package
-class ResourceNotFoundException extends RuntimeException {
-    public ResourceNotFoundException(String message) {
-        super(message);
-    }
-}
-
-class BadRequestException extends RuntimeException {
-    public BadRequestException(String message) {
-        super(message);
-    }
-}
 
 @Service
 public class SuperAdminConfigService {

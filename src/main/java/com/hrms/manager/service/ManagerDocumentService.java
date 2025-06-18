@@ -8,9 +8,8 @@ import com.hrms.employee.core.enums.DocumentType;
 import com.hrms.employee.core.repository.DocumentRepository;
 import com.hrms.employee.payload.response.DocumentListItemDTO; // Reusing
 import com.hrms.manager.payload.request.ManagerHikeDocumentUploadRequest;
-// Assuming ResourceNotFoundException and BadRequestException are accessible (e.g. defined in a common place or hr.service)
-import com.hrms.hr.service.ResourceNotFoundException;
-import com.hrms.hr.service.BadRequestException;
+import com.hrms.exception.ResourceNotFoundException;  // Changed to common
+import com.hrms.exception.BadRequestException;      // Changed to common
 import com.hrms.security.service.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

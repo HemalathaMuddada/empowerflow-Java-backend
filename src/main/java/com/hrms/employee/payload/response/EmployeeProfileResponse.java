@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import io.swagger.v3.oas.annotations.media.Schema; // Added
-
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -58,6 +56,5 @@ public class EmployeeProfileResponse {
     private String reasonForLeaving;
 
     @Schema(description = "Comments from HR regarding the offboarding process.", example = "Exit interview conducted.", nullable = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-
     private String offboardingCommentsByHR;
 }
